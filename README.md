@@ -6,6 +6,7 @@
 # Method 2 : Prediction in Tableau connected to RServe. 
 ```
 Step 1 : Install R on your computer : https://cran.r-project.org
+
 -Open an R session : 
 -install.packages("Rserve")
 -library(Rserve)
@@ -15,6 +16,7 @@ Step 1 : Install R on your computer : https://cran.r-project.org
 ```
 ```
 Step 2 : Open Tableau 
+
 -Go to Help/ Parameters and Performance
 -Manage External Service Connection 
 -Choose localhost + OK 
@@ -23,6 +25,7 @@ Step 2 : Open Tableau
 ```
 ```
 Step 3: Create a Calculated Field : Forecast 
+
 SCRIPT_REAL("
 library(forecast);
 myts <- ts(.arg1, start = c(1896), frequency = 1);
@@ -35,6 +38,7 @@ SUM([visits]),
 ```
 ```
 Step 4: Need to adjust the axis : Date New 
+
 -Create Calculated field day : 31 [day ]
 -Create Calculated field month : 12  [month ]
 -Create Calculate field [Date]: MAKEDATE([year],[month ],[day ])
@@ -44,6 +48,7 @@ Rows : Forecast
 ```
 ```
 Step 5 : Adjust the color : Separate Actual/Forecast Periods 
+
 IF INDEX()<=SIZE()-[Forecast Periods]
 Then"Actual" 
 ELSE "Forecast"
@@ -55,6 +60,7 @@ END
 
 ```
 Step 1 : Arima Times Series in Alteryx 
+
 -Alteryx has two Time Series models ARIMA and ETS 
 -In/Out-Input Data : Bookings Data from 2002 tà 2011 (monthly report)
 -Connection with Time Series ARIMA: Write the model name 'ARIMA',
