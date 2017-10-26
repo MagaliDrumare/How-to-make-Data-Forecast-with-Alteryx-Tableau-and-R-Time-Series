@@ -4,6 +4,51 @@
 
 
 # Method 2 : Prediction in Tableau connected to RServe. 
+```
+Step 1 : Install R on your computer : https://cran.r-project.org
+-Open an R session : 
+-install.packages("Rserve")
+-library(Rserve)
+-Rserve(args="--no-save")
+-library forecast
+-install.packages("forecast")
+```
+```
+Step 2 : Open Tableau 
+-Go to Help/ Parameters and Performance
+-Manage External Service Connection 
+-Choose localhost + OK 
+-Then ‘Test Connection’
+-Successfully connected to the RServe service must appear. 
+```
+```
+Step 3: Create a Calculated Field : Forecast 
+SCRIPT_REAL("
+library(forecast);
+myts <- ts(.arg1, start = c(1896), frequency = 1);
+farima<- auto.arima(myts)
+fcast <- forecast(farima, h=.arg2[1]);
+n <- length(.arg1); 
+append(.arg1[(.arg2[1]+1):n],fcast$mean, after = n-.arg2[1])", 
+SUM([visits]), 
+[Forecast Periods])
+```
+```
+Step 4: Need to adjust the axis : Date New 
+-Create Calculated field day : 31 [day ]
+-Create Calculated field month : 12  [month ]
+-Create Calculate field [Date]: MAKEDATE([year],[month ],[day ])
+-Create Date New : DATEADD("year",[Forecast Periods],[Date])
+In Column : Date New Continuous 
+Rows : Forecast
+```
+```
+Step 5 : Adjust the color : Separate Actual/Forecast Periods 
+IF INDEX()<=SIZE()-[Forecast Periods]
+Then"Actual" 
+ELSE "Forecast"
+END
+```
 
 
 # Method 3 : Prediction in Alteryx connected to Tableau. 
