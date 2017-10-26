@@ -1,9 +1,32 @@
 # How-to-make-Time-Series-Predictions-with-Alteryx-Tableau-and-R
 
 # Method 1 : Prediction in Tableau Desktop. 
+* Creating a Forecast Using Tableau's Internal Toolbox : http://bit.ly/2gF58sb
 
+```
+Step 1 :  Create the initial dashboard 
+
+-Columns : Dimension (continuous data mandatory)
+-Rows : Mesure 
+-Right clic on the dashboard: Forecast / Show Forecast ( Prévision/ Afficher la prévision) 
+```
+```
+Step 2 : Change the parameters of the forecast 
+
+-Right clic on the dashboard : Forecast / Forecast Options (Prevision/ Option des previsions)
+-You can modify the forecast Period, choose another model, the confidence intervals. 
+```
+```
+Step 3: Check if the forecast is good or not ? 
+
+-Right clic on the dashboard : Forecast/ Describe Forecast (Prevision / Décrire la prévision) 
+-Check the quality : Good or Poor. 
+-Check trend or seasonality of the model.
+```
 
 # Method 2 : Prediction in Tableau connected to RServe. 
+* Custom Forecasting Using R Integration in Tableau: http://bit.ly/2zPtCqW
+
 ```
 Step 1 : Install R on your computer : https://cran.r-project.org
 
@@ -57,6 +80,7 @@ END
 
 
 # Method 3 : Prediction in Alteryx connected to Tableau. 
+* Predictive Tools & R Code: http://bit.ly/2zFIfMP
 
 ```
 Step 1 : Arima Times Series in Alteryx 
