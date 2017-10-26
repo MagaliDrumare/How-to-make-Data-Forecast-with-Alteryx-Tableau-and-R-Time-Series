@@ -107,7 +107,7 @@ Step 2: Create the TDE with the forecast Predictions.
 ```
 
 ```
-Step 3: Create the Dashboard in Tableau Dektop
+Step 3: Create the Dashboard in Tableau Desktop
 
 -Open the TDE file with Tableau Desktop and create the dashboard twbx. 
 -You can visualize the forecast for the next 6 months, the confidence intervals. 
